@@ -1,0 +1,34 @@
+[
+
+ {
+	"name": "Sony Plus",
+	"slug": "sony-plus",
+	"status": "active",
+	"create_by": "1"
+
+ },
+
+{
+	"name": "Samsung Plus",
+	"slug": "samsung-plus",
+	"status": "active",
+	"create_by": "1"
+ },
+ {
+	"name": "Dell",
+	"slug": "dell",
+	"status": "active",
+	"create_by": "1"
+
+ },
+ {
+	"name": "Nokia",
+	"slug": "nokia",
+	"status": "active",
+	"create_by": "2"
+
+ }
+
+
+]
+
