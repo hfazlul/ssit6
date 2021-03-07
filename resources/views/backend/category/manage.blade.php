@@ -51,6 +51,7 @@
             <table id="myDataTable" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
+                        <th>SL.</th>
                         <th>Name</th>
                         <th>Slug</th>
                         <th>Status</th>
@@ -61,6 +62,7 @@
                 <tbody>
                     @foreach ($categories as $category)
                     <tr>
+                        <td>{{ ++$loop->index }}</td>
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->slug }}</td>
                         <td>{{ $category->status }}</td>
@@ -90,6 +92,7 @@
 
                             @foreach ( $category->sub_category as $sub)
                             <tr>
+                                <td>{{ ++$loop->index }}</td>
                                 <td>{{ $category->name }} > {{ $sub->name }}</td>
                                 <td>{{ $sub->slug }}</td>
                                 <td>{{ $sub->status }}</td>
@@ -121,6 +124,7 @@
 
                                     @foreach ( $sub->sub_category as $sub1)
                                     <tr>
+                                        <td>{{ ++$loop->index }}</td>
                                         <td>{{ $category->name }} > {{ $sub->name }} > {{ $sub1->name }}</td>
                                         <td>{{ $sub1->slug }}</td>
                                         <td>{{ $sub1->status }}</td>
@@ -160,14 +164,4 @@
     </div>
 </div>
 
-@endsection
-
-@section('js')
-<script src="{{asset('/')}}assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-@endsection
-
-@section('js2')
-<script>
-    $('#myDataTable').DataTable();
-</script>
 @endsection

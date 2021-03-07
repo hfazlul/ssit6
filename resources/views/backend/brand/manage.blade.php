@@ -51,6 +51,7 @@
             <table id="myDataTable" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
+                        <th>Sl.</th>
                         <th>Name</th>
                         <th>Slug</th>
                         <th>Status</th>
@@ -61,6 +62,7 @@
                 <tbody>
                     @foreach ($brands as $brand)
                     <tr>
+                        <td>{{ ++$loop->index }}</td>
                         <td>{{ $brand->name }}</td>
                         <td>{{ $brand->slug }}</td>
                         <td>{{ $brand->status }}</td>
@@ -103,14 +105,4 @@
     </div>
 </div>
 
-@endsection
-
-@section('js')
-<script src="{{asset('/')}}assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-@endsection
-
-@section('js2')
-<script>
-    $('#myDataTable').DataTable();
-</script>
 @endsection

@@ -1,7 +1,7 @@
 @extends('backend.components.layout')
 
 @section('title')
-   Add Category
+   Upsate Category
 @endsection
 
 @section('css')
@@ -49,7 +49,7 @@
                     <h4 class="mb-0">Category Add</h4>
                 </div>
                 <hr/>
-                <form action="{{ route('staff.category.store') }}" method="post">
+                <form action="{{ route('staff.category.store', $cat->id) }}" method="post">
                     @csrf
                     <div class="form-body">
                         <div class="form-group row">
@@ -57,14 +57,32 @@
                             <div class="col-sm-9">
                                <select class="form-control" name="root" id="root">
                                    <option value="0">Root</option>
-                                     {!! categories_select_data($categories , 3) !!}
+                                    @foreach ($categories as $category )
+                                     <option value="{{ $category->id }}" {{ $category->id === $cat->root ? 'selected':'' }}>{{ $category->name }}</option>
+
+                                        @if (count($category->sub_category))
+                                            @foreach ( $category->sub_category as $sub)
+                                                <option value="{{ $sub->id }}" {{ $sub->id === $cat->root ? 'selected':'' }}>{{ $category->name }} > {{ $sub->name }}</option>
+
+                                                    @if (count($sub->sub_category))
+                                                        @foreach ( $sub->sub_category as $sub1)
+                                                            <option value="{{ $sub1->id }}" {{ $sub1->id === $cat->root ? 'selected':'' }}>{{ $category->name }} > {{ $sub->name }} > {{ $sub1->name }}</option>
+
+
+                                                        @endforeach
+                                                    @endif
+
+                                            @endforeach
+                                        @endif
+
+                                    @endforeach
                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label" for="name">Category Name</label>
                             <div class="col-sm-9">
-                                <input type="text" id="name" name="name" value="{{ old('name') }}" class="form-control" placeholder="Enter Category name">
+                                <input type="text" id="name" name="name" value="{{ $cat->name }}" class="form-control" placeholder="Enter Category name">
                                 @error('name')
 
                                 <span class="text-danger font-weight-bold" >{{ $message }}</span>
@@ -75,11 +93,11 @@
                             <label class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-10 text-center">
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="active" checked name="status" value="active" class="custom-control-input">
+                                        <input type="radio" id="active" checked name="status" value="active" {{ $cat->status === 'Active' ? 'checked' : '' }} class="custom-control-input">
                                         <label class="custom-control-label" for="active">Active</label>
                                      </div>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="inactive" name="status" value="inactive" class="custom-control-input">
+                                        <input type="radio" id="inactive" name="status" value="inactive" {{ $cat->status === 'Inactive' ? 'checked' : '' }} class="custom-control-input">
                                         <label class="custom-control-label" for="inactive">Inactive</label>
                                      </div>
                         </div>
@@ -87,7 +105,7 @@
                         <div class="form-group row ">
                             <label class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-10 text-right" >
-                                <button type="submit" class="btn btn-primary px-4">Add Category</button>
+                                <button type="submit" class="btn btn-primary px-4">Update Category</button>
                             </div>
                         </div>
 

@@ -74,10 +74,10 @@
 <script src="{{asset('/')}}assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
 <!-- Vector map JavaScript -->
 <script src="{{asset('/')}}assets/js/index2.js"></script>
-@yield('js')
-@yield('js2')
+<script src="{{asset('/')}}assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
 <!-- App JS -->
 <script src="{{asset('/')}}assets/js/app.js"></script>
+<script src="{{asset('/')}}assets/js/customs.js"></script>
 </body>
 
 

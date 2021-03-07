@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -14,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.product.manage');
     }
 
     /**
@@ -24,7 +26,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $brands= Brand::select('id','name')->get();
+        $categories =Category::where('root', 0)->get();
+        return view('backend.product.add', compact('categories','brands'));
     }
 
     /**
